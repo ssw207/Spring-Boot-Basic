@@ -4,16 +4,24 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
 @Entity
 public class User {
 	@Id
 	@GeneratedValue
+	@JacksonXmlProperty(isAttribute = true)
 	private Long id;
 	
+	@NotBlank(message = "이름은 필수 입력항목 입니다!!")
+	@JacksonXmlProperty
 	@Column(nullable = false)
 	private String name;
 	
+	@NotBlank(message = "이메일 주소는 꼭 입력해야합니다.")
+	@JacksonXmlProperty
 	@Column(unique = true)
 	private String email;
 
@@ -83,9 +91,9 @@ public class User {
 		return true;
 	}
 
-	public User(Long id, String name, String email) {
+	public User() {}
+	public User(String name, String email) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.email = email;
 	}
