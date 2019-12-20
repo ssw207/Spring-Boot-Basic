@@ -30,19 +30,29 @@ public class TemplateController {
 		return "index";
 	}
 
-//	@GetMapping("/signup")
-//	public String showSignUpForm(User user) {
-//		return "add-user";
-//	}
+	@GetMapping("/signup")
+	public String showSignUpForm(User user) {
+		return "add-user";
+	}
 
 	// BindResult 에 @Valid 결과가 매핑됨
-//	@PostMapping("/adduser")
-//	public String addUser(@Valid User user, BindingResult result, Model model) {
-//		if (result.hasErrors()) {
-//			return "add-user";
-//		}
-//		r.save(user);
-//		model.addAttribute("users", r.findAll());
-//		return "index";
-//	}
+	@PostMapping("/adduser")
+	public String addUser(@Valid User user, BindingResult result, Model model) {
+		if (result.hasErrors()) {
+			return "add-user";
+		}
+		r.save(user);
+		model.addAttribute("users", r.findAll());
+		return "index";
+	}
+
+	@GetMapping("/hellopage")
+	public String hello() {
+		return "hellopage";
+	}
+
+	@GetMapping("/mypage")
+	public String mypage() {
+		return "mypage";
+	}
 }

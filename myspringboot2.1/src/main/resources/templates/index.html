@@ -8,11 +8,13 @@
 	<table>
 		<tr>
 			<td>name</td>
-			<td>email</td>		
+			<td>email</td>
+			<td>edit</td>		
 		</tr>
 		<tr th:each="user:${users}">
 			<td th:text="${user.name}"></td>
 			<td>[[${user.email}]]</td>
+			<td><a th:href="@{/edit/{id}(id=${user.id})}">update</a></td>
 		</tr>
 	</table>
 	<a href="/signup">등록</a>
